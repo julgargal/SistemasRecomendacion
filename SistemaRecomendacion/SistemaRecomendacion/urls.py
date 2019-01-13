@@ -19,8 +19,10 @@ from sistemaRecomendacion_app import views
 
 urlpatterns = [ 
     path('', views.index),
-  #  path('populate', views.populateDB),   
+    path('populate', views.populateDB),   
     path('loadRS', views.loadRS),
     path('buscar', views.search),
+    path('recomendar', views.recomendar),
+    path('recomendarLibro', views.recomendarLibro),
     path('admin/', admin.site.urls),
 ]

@@ -14,12 +14,12 @@ def populatePuntuaciones():
     models.Puntuacion.objects.all().delete()
 
 
-    with open('../docs/BX-Book-Ratings.csv', encoding='latin-1') as File:
+    with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\BX-Book-Ratings.csv',  encoding='latin-1') as File:
         count=1
         reader = csv.reader(File, delimiter=';', quoting=csv.QUOTE_MINIMAL)
         row = next(reader)
         for row in reader:
-            if count < 100:
+            if count < 10:
                 idUsuario_BUENO = row[0]
                 isbLibro_BUENO = row[1]
                 puntuacion = row[2]
@@ -29,7 +29,7 @@ def populatePuntuaciones():
                 # usuario= models.Usuario.objects.get(idUsuario=idUsuario)
                 # todos_usuarios=models.Usuario.objects.all()
 
-                with open('../docs/BX-Users.csv', encoding='latin-1') as File:
+                with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\BX-Users.csv', encoding='latin-1') as File:
                     reader_usuarios = csv.reader(File, delimiter=';', quoting=csv.QUOTE_MINIMAL)
                     row_usuarios = next(reader_usuarios)
                     for row_usuarios in reader_usuarios:
@@ -49,7 +49,7 @@ def populatePuntuaciones():
                         #sys.stdout.flush()
 
 
-                with open('../docs/BX-Books.csv', encoding='latin-1') as File:
+                with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\BX-Books.csv', encoding='latin-1') as File:
                     reader_libros = csv.reader(File, delimiter=';', quoting=csv.QUOTE_MINIMAL)
                     row_libros = next(reader_libros)
                     for row_libros in reader_libros:
