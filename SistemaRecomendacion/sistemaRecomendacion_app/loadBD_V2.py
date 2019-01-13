@@ -14,12 +14,12 @@ def populatePuntuaciones():
     models.Puntuacion.objects.all().delete()
 
 
-    with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\BX-Book-Ratings.csv',  encoding='latin-1') as File:
+    with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\BX-Book-Ratings.csv', encoding='latin-1') as File:
         count=1
         reader = csv.reader(File, delimiter=';', quoting=csv.QUOTE_MINIMAL)
         row = next(reader)
         for row in reader:
-            if count < 10:
+            if count < 5:
                 idUsuario_BUENO = row[0]
                 isbLibro_BUENO = row[1]
                 puntuacion = row[2]
@@ -29,7 +29,7 @@ def populatePuntuaciones():
                 # usuario= models.Usuario.objects.get(idUsuario=idUsuario)
                 # todos_usuarios=models.Usuario.objects.all()
 
-                with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\BX-Users.csv', encoding='latin-1') as File:
+                with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\docs/BX-Users.csv', encoding='latin-1') as File:
                     reader_usuarios = csv.reader(File, delimiter=';', quoting=csv.QUOTE_MINIMAL)
                     row_usuarios = next(reader_usuarios)
                     for row_usuarios in reader_usuarios:
@@ -49,7 +49,7 @@ def populatePuntuaciones():
                         #sys.stdout.flush()
 
 
-                with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\BX-Books.csv', encoding='latin-1') as File:
+                with open('C:\\Users\\maria\\Eclipse\\workspaceSR\\SistemasRecomendacion\\SistemaRecomendacion\\docs\\docs/BX-Books.csv', encoding='latin-1') as File:
                     reader_libros = csv.reader(File, delimiter=';', quoting=csv.QUOTE_MINIMAL)
                     row_libros = next(reader_libros)
                     for row_libros in reader_libros:
@@ -71,22 +71,23 @@ def populatePuntuaciones():
                                 libro.save()
                                 print("Libro con id: " + str(isbLibro_BUENO) + " cargado.")
 
-            #Comprobamos que el libro y los usuarios existan
-            Nusuario = models.Usuario.objects.filter(idUsuario=idUsuario_BUENO).count()
-            Nlibro = models.Libro.objects.filter(isbn=isbLibro_BUENO).count()
+                #Comprobamos que el libro y los usuarios existan
+                Nusuario = models.Usuario.objects.filter(idUsuario=idUsuario_BUENO).count()
+                Nlibro = models.Libro.objects.filter(isbn=isbLibro_BUENO).count()
 
-            if(Nusuario+Nlibro==2):
-                usuario = models.Usuario.objects.get(idUsuario=idUsuario_BUENO)
-                libro = models.Libro.objects.get(isbn=isbLibro_BUENO)
+                if(Nusuario+Nlibro==2):
+                    usuario = models.Usuario.objects.get(idUsuario=idUsuario_BUENO)
+                    libro = models.Libro.objects.get(isbn=isbLibro_BUENO)
 
 
-                puntuacion = models.Puntuacion(usuario=usuario, libro=libro, puntuacion=puntuacion)
-                puntuacion.save()
-                count = count + 1
-                sys.stdout.write('\r' + "Puntuaciones cargadas: " + str(count))
-                sys.stdout.flush()
-                print("\n")
-        print("\n")
-        print("Se han cargado: " + str(count) + " puntuaciones.")
+                    puntuacion = models.Puntuacion(usuario=usuario, libro=libro, puntuacion=puntuacion)
+                    puntuacion.save()
+                    sys.stdout.write('\r' + "Puntuaciones cargadas: " + str(count))
+                    count = count + 1
+                    sys.stdout.flush()
+                    print("\n")
+
+    print("\n")
+    print("Se han cargado: " + str(count) + " puntuaciones.")
 
 populatePuntuaciones()
