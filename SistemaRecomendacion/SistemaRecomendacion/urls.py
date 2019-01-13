@@ -15,12 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from sistemaRecomendacion_app import views
 
-urlpatterns = [ 
-    path('', views.index),
-    path('populate', views.populateDB),   
-    path('loadRS', views.loadRS),
-    path('buscar', views.search),
+urlpatterns = [
     path('admin/', admin.site.urls),
 ]
