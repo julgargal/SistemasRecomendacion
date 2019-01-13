@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from sistemaRecomendacion_app.loadBD_V2 import populatePuntuaciones
+#from sistemaRecomendacion_app.loadBD_V2 import populatePuntuaciones
 from sistemaRecomendacion_app.forms import LibroForm
 from sistemaRecomendacion_app.models import Libro
 
@@ -9,9 +9,9 @@ from sistemaRecomendacion_app.models import Libro
 def index(request): 
     return render(request,'index.html')
  
-def populateDB(request):
-    populatePuntuaciones() 
-    return render(request,'populate.html')
+# def populateDB(request):
+#     populatePuntuaciones() 
+#     return render(request,'populate.html')
 
 
 def loadRS(request):
